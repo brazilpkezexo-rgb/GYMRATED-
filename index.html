@@ -3,246 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GYMRATED | Best Valuable Clothes</title>
 
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<title>GYMRATED™ ATHLETICS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#0a0a0a;
-  --card:#141414;
-  --accent:#ff2c2c;
-  --text:#fff;
-  --muted:#aaa;
+  --bg:#0b0b0e;
+  --card:#14141a;
+  --accent:#00ffcc;
+  --text:#ffffff;
+  --muted:#9a9a9a;
 }
-
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-body{background:var(--bg);color:var(--text);overflow-x:hidden}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter}
+body{background:var(--bg);color:var(--text);}
 
 /* HERO */
 .hero{
-  height:95vh;
+  height:90vh;
   background:url("https://i.ibb.co/mCHLGT9K/file-00000000e944720886ab1a868d9dbc7d.png") center/cover no-repeat;
   display:flex;
-  flex-direction:column;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
 }
-.hero h1{font-size:3.5rem;letter-spacing:3px}
-.hero p{margin:10px 0;color:var(--muted)}
+.hero h1{font-size:3rem;font-weight:800}
+.hero p{margin:15px 0;color:var(--muted)}
 .hero button{
-  margin-top:20px;
-  padding:15px 40px;
-  border:none;
-  border-radius:30px;
+  padding:15px 35px;
   background:var(--accent);
-  color:#fff;
-  font-size:1rem;
+  border:none;
+  font-weight:700;
   cursor:pointer;
+  border-radius:30px;
 }
 
-/* SECTION */
-section{padding:40px 20px}
+/* CATEGORY */
+.categories{
+  display:flex;
+  gap:15px;
+  padding:20px;
+  overflow-x:auto;
+}
+.categories button{
+  background:var(--card);
+  color:white;
+  border:none;
+  padding:10px 20px;
+  border-radius:20px;
+  cursor:pointer;
+}
 
 /* PRODUCTS */
 .products{
-  display:flex;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
-  overflow-x:auto;
+  padding:20px;
 }
 .product{
-  min-width:240px;
   background:var(--card);
-  border-radius:18px;
   padding:15px;
-  transition:.35s ease;
+  border-radius:15px;
   position:relative;
+  transition:0.3s;
 }
-.product:hover,
-.product:active{
-  transform:translateY(-8px) scale(1.03);
+.product:hover{
+  box-shadow:0 0 20px rgba(0,255,204,0.4);
 }
-.product::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:18px;
-  box-shadow:0 0 0 rgba(255,44,44,0);
-  transition:.35s;
-}
-.product:hover::after,
-.product:active::after{
-  box-shadow:0 0 40px rgba(255,44,44,.4);
-}
-
-/* IMAGE */
-.img{
+.product img{
   width:100%;
   aspect-ratio:1/1;
-  background:#222;
-  border-radius:12px;
-  overflow:hidden;
-}
-.img img{
-  width:100%;
-  height:100%;
   object-fit:contain;
+  border-radius:10px;
+  background:#000;
 }
-
-/* TEXT */
-.product h3{margin:12px 0;font-size:1rem}
-.product p{color:var(--accent);font-weight:bold}
-
-/* SIZE */
-.sizes{
-  display:flex;
-  gap:8px;
-  margin-top:10px;
+.product h3{margin:10px 0}
+.price{font-weight:700}
+.old{
+  color:var(--muted);
+  text-decoration:line-through;
+  font-size:0.9em;
 }
-.sizes span{
-  flex:1;
-  text-align:center;
-  padding:8px 0;
-  border-radius:8px;
-  background:#222;
-  color:#aaa;
-  font-size:14px;
-  cursor:pointer;
-  transition:.25s;
-}
-.sizes span.active{
-  background:var(--accent);
-  color:#fff;
-  box-shadow:0 0 12px rgba(255,44,44,.7);
-}
-
-/* STOCK */
-.stock{
-  margin-top:8px;
-  font-size:12px;
-  color:#ff4d4d;
-  animation:pulse 1.5s infinite;
-}
-@keyframes pulse{
-  0%{opacity:1}
-  50%{opacity:.4}
-  100%{opacity:1}
-}
-
-.product button{
-  width:100%;
-  margin-top:12px;
-  padding:10px;
-  border:none;
+.urgency{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:red;
+  padding:5px 10px;
   border-radius:20px;
-  background:#fff;
-  color:#000;
-  font-weight:bold;
+  font-size:0.75em;
+}
+.size{
+  display:flex;
+  gap:5px;
+  margin:10px 0;
+}
+.size button{
+  flex:1;
+  padding:6px;
+  background:#222;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+.size button.active{
+  background:var(--accent);
+  color:black;
+}
+.add{
+  width:100%;
+  padding:10px;
+  background:var(--accent);
+  border:none;
+  font-weight:700;
   cursor:pointer;
 }
 
 /* CART */
 .cart-btn{
   position:fixed;
-  right:20px;
   bottom:90px;
+  right:20px;
   background:var(--accent);
-  padding:15px;
+  width:60px;
+  height:60px;
   border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
   cursor:pointer;
-  z-index:1000;
-}
-.cart-count{
-  position:absolute;
-  top:-5px;
-  right:-5px;
-  background:#000;
-  padding:3px 7px;
-  border-radius:50%;
-  font-size:12px;
 }
 .cart{
   position:fixed;
-  right:-100%;
   top:0;
+  right:-100%;
   width:100%;
-  max-width:380px;
+  max-width:400px;
   height:100%;
   background:#111;
   padding:20px;
-  transition:.3s;
-  z-index:999;
-  overflow-y:auto;
+  transition:0.3s;
+  overflow:auto;
 }
-.cart.active{right:0}
-.cart input,.cart button{
+.cart.open{right:0}
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+.cart-item button{
+  background:red;
+  border:none;
+  color:white;
+  cursor:pointer;
+}
+.checkout button{
   width:100%;
-  padding:10px;
-  margin-top:10px;
-}
-
-/* UPI */
-.upi{
-  margin-top:15px;
-  background:#1a1a1a;
   padding:15px;
-  border-radius:12px;
-  text-align:center;
+  background:var(--accent);
+  border:none;
+  font-weight:700;
 }
-.qr{
-  width:100%;
-  aspect-ratio:1/1;
-  background:#222;
-  margin-top:10px;
-  border-radius:10px;
-  overflow:hidden;
-}
-.qr img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
-
-/* WHATSAPP */
+.qr{display:none;text-align:center}
+.qr img{width:200px}
 .whatsapp{
   position:fixed;
-  right:20px;
   bottom:20px;
-  background:#25d366;
+  right:20px;
+  background:#25D366;
+  color:white;
   padding:15px;
   border-radius:50%;
+  font-size:24px;
   text-decoration:none;
-  color:#fff;
-  z-index:1000;
-}
-
-/* LIVE ORDER POPUP */
-.live-order{
-  position:fixed;
-  left:15px;
-  bottom:-200px;
-  background:#111;
-  color:#fff;
-  display:flex;
-  gap:10px;
-  padding:12px;
-  border-radius:12px;
-  box-shadow:0 0 25px rgba(255,44,44,.4);
-  align-items:center;
-  font-size:13px;
-  z-index:2000;
-  transition:.6s ease;
-}
-.live-order.show{bottom:90px}
-.live-order img{
-  width:40px;
-  height:40px;
-  border-radius:8px;
-}
-.live-order .time{
-  font-size:11px;
-  color:#aaa;
 }
 </style>
 </head>
@@ -250,125 +186,134 @@ section{padding:40px 20px}
 <body>
 
 <div class="hero">
-  <h1>GYMRATED</h1>
-  <p>Best Valuable Clothes</p>
-  <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">SHOP NOW</button>
-</div>
-
-<section id="products">
-<h2>Gym Collection</h2>
-
-<div class="products">
-
-<div class="product">
-  <div class="img"><img src="https://i.ibb.co/7tysb9PQ/IMG-20260228-WA0007.jpg"></div>
-  <h3>Graphic Track Pants</h3>
-  <p>₹700</p>
-  <div class="sizes">
-    <span onclick="selectSize(this)">S</span>
-    <span onclick="selectSize(this)">M</span>
-    <span onclick="selectSize(this)">L</span>
-    <span onclick="selectSize(this)">XL</span>
+  <div>
+    <h1>GYMRATED™ ATHLETICS</h1>
+    <p>Built for Hustle. Rated for Power.</p>
+    <button onclick="document.getElementById('shop').scrollIntoView()">Shop Now</button>
   </div>
-  <p class="stock">🔥 Only 3 left</p>
-  <button onclick="addToCart('Graphic Track Pants')">Add to Cart</button>
 </div>
 
-<div class="product">
-  <div class="img"><img src="https://i.ibb.co/ZDwHvVT/IMG-20260228-WA0004.jpg"></div>
-  <h3>Compression T-Shirt</h3>
-  <p>₹700</p>
-  <div class="sizes">
-    <span onclick="selectSize(this)">S</span>
-    <span onclick="selectSize(this)">M</span>
-    <span onclick="selectSize(this)">L</span>
-    <span onclick="selectSize(this)">XL</span>
-  </div>
-  <p class="stock">🔥 Only 3 left</p>
-  <button onclick="addToCart('Compression T-Shirt')">Add to Cart</button>
+<div class="categories">
+  <button onclick="filter('all')">All</button>
+  <button onclick="filter('gym')">Gym Wear</button>
 </div>
 
-</div>
-</section>
+<div id="shop" class="products"></div>
 
-<div class="cart-btn" onclick="toggleCart()">🛒<span class="cart-count" id="count">0</span></div>
+<div class="cart-btn" onclick="toggleCart()">🛒<span id="count">0</span></div>
 
 <div class="cart" id="cart">
-<h2>Your Order</h2>
-<ul id="items"></ul>
-
-<input id="name" placeholder="Your Name">
-<input id="phone" placeholder="Phone Number">
-
-<div class="upi">
-<b>Pay via UPI</b>
-<div class="qr"><img src="PASTE_UPI_QR_IMAGE"></div>
-<p style="font-size:12px;color:#aaa">After payment click below</p>
-</div>
-
-<button onclick="sendOrder()">I’ve Paid – Send Order</button>
-<button onclick="toggleCart()">Close</button>
-</div>
-
-<a class="whatsapp" href="https://wa.me/+918619268763" target="_blank">💬</a>
-
-<!-- LIVE ORDER -->
-<div id="liveOrder" class="live-order">
-  <img src="https://i.imgur.com/8Km9tLL.png">
-  <div>
-    <strong id="lo-name">Rahul</strong> from <span id="lo-city">Delhi</span><br>
-    bought <span id="lo-product">Gym Track Pants</span>
-    <div class="time">Just now</div>
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <p>Total: ₹<span id="total">0</span></p>
+  <div class="checkout">
+    <button onclick="placeOrder()">Place Order</button>
+  </div>
+  <div class="qr" id="qr">
+    <p>Scan & Pay</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8905371427@ybl">
+    <button onclick="paid()">I Have Paid</button>
   </div>
 </div>
 
+<a class="whatsapp" href="https://wa.me/918619268763" target="_blank">💬</a>
+
 <script>
-emailjs.init("RWCOd-B6roJH8zYyT");
+const USD_RATE = 90;
+
+let products=[
+  {
+    id:1,
+    name:"Graphic Track Pants",
+    price:700,
+    market:1499,
+    cat:"gym",
+    img:"https://i.ibb.co/7tysb9PQ/IMG-20260228-WA0007.jpg"
+  },
+  {
+    id:2,
+    name:"Compression T-Shirt",
+    price:700,
+    market:1299,
+    cat:"gym",
+    img:"https://i.ibb.co/ZDwHvVT/IMG-20260228-WA0004.jpg"
+  }
+];
 
 let cart=[];
 
-function selectSize(el){
-  el.parentElement.querySelectorAll("span").forEach(s=>s.classList.remove("active"));
-  el.classList.add("active");
+function renderProducts(list=products){
+  const box=document.getElementById("shop");
+  box.innerHTML="";
+  list.forEach(p=>{
+    box.innerHTML+=`
+    <div class="product">
+      <div class="urgency">Only 3 left</div>
+      <img src="${p.img}">
+      <h3>${p.name}</h3>
+      <p class="old">₹${p.market}</p>
+      <p class="price">₹${p.price} | $${(p.price/USD_RATE).toFixed(2)}</p>
+      <div class="size">
+        <button onclick="selectSize(this)">S</button>
+        <button onclick="selectSize(this)">M</button>
+        <button onclick="selectSize(this)">L</button>
+        <button onclick="selectSize(this)">XL</button>
+      </div>
+      <button class="add" onclick="add(${p.id})">Add to Cart</button>
+    </div>`;
+  });
 }
 
-function addToCart(item){
-  cart.push(item+" - ₹700");
+function selectSize(btn){
+  btn.parentElement.querySelectorAll("button").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+function add(id){
+  cart.push(products.find(p=>p.id===id));
   document.getElementById("count").innerText=cart.length;
-  let li=document.createElement("li");
-  li.innerText=item+" - ₹700";
-  document.getElementById("items").appendChild(li);
+  renderCart();
+}
+
+function renderCart(){
+  let box=document.getElementById("cartItems");
+  let total=0;
+  box.innerHTML="";
+  cart.forEach((i,idx)=>{
+    total+=i.price;
+    box.innerHTML+=`
+    <div class="cart-item">
+      <span>${i.name}</span>
+      <button onclick="remove(${idx})">❌</button>
+    </div>`;
+  });
+  document.getElementById("total").innerText=total;
+}
+
+function remove(i){
+  cart.splice(i,1);
+  renderCart();
+  document.getElementById("count").innerText=cart.length;
 }
 
 function toggleCart(){
-  document.getElementById("cart").classList.toggle("active");
+  document.getElementById("cart").classList.toggle("open");
 }
 
-function sendOrder(){
-  let name=document.getElementById("name").value;
-  let phone=document.getElementById("phone").value;
-  if(!name||!phone||cart.length==0){alert("Fill details and add items");return;}
-  emailjs.send("service_qp614df","template_yja1dai",{
-    customer_name:name,
-    customer_phone:phone,
-    items:cart.join(", "),
-    to_email:"karanpanwar14047@gmail.com"
-  }).then(()=>{alert("Order Sent Successfully!");location.reload();});
+function placeOrder(){
+  document.getElementById("qr").style.display="block";
 }
 
-/* FAKE LIVE ORDERS */
-const names=["Rahul","Aman","Vikash","Rohit","Kunal","Arjun"];
-const cities=["Delhi","Mumbai","Pune","Jaipur","Noida","Indore"];
-const products=["Track Pants","Compression T-Shirt","Gym T-Shirt"];
+function paid(){
+  alert("Order Confirmed!");
+}
 
-setInterval(()=>{
-  let box=document.getElementById("liveOrder");
-  document.getElementById("lo-name").innerText=names[Math.floor(Math.random()*names.length)];
-  document.getElementById("lo-city").innerText=cities[Math.floor(Math.random()*cities.length)];
-  document.getElementById("lo-product").innerText=products[Math.floor(Math.random()*products.length)];
-  box.classList.add("show");
-  setTimeout(()=>box.classList.remove("show"),4000);
-},8000);
+function filter(cat){
+  if(cat==="all") renderProducts();
+  else renderProducts(products.filter(p=>p.cat===cat));
+}
+
+renderProducts();
 </script>
 
 </body>
